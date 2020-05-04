@@ -1,0 +1,8 @@
+ejecutar en virtualenn venv
+el virtualenv con python 3 -> virtualenv --python=python3 venv
+en entorno virtual -> pip install --editable .
+
+
+recordar salir del virtualenv con -> deactivate
+
+
