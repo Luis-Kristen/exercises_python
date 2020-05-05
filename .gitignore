@@ -5,3 +5,4 @@ include
 .pyc
 venv
 __pycache__
+.txt
