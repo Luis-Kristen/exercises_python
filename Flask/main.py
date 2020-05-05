@@ -3,6 +3,7 @@ from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms.fields import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired
+import unittest
 
 
 app = Flask(__name__)
@@ -13,11 +14,16 @@ app.config['SECRET_KEY'] = 'SUPER SECRETO'
 
 todos = ['Comprar cafe', 'Enviar solicitud de compra', 'Entregar video a productor ']
 
-
 class LoginForm(FlaskForm):
     username = StringField('Nombre de usuario', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Enviar')
+
+
+@app.cli.command()
+def test():
+    tests = unittest.TestLoader().discover('tests')
+    unittest.TextTestRunner().run(tests)
 
 
 @app.errorhandler(404)
