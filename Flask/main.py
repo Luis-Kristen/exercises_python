@@ -53,7 +53,7 @@ def hello():
         username = login_form.username.data
         session['username'] = username
 
-        flash('Nombre de usario registrado con éxito!')
+        flash('Nombre de usario registrado con Ã©xito!')
 
         return redirect(url_for('index'))
 
