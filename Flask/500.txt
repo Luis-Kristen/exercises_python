@@ -1,0 +1,12 @@
+
+<!-- saved from url=(0137)https://static.platzi.com/media/tmp/class-files/git/platzi-flask/platzi-flask-498e88b24cb15e38abe6cbee98ec8da1c4719216/templates/500.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"></head><body><h1>Error del servidor, intenta más tarde</h1>
+    <p>{{ error }}</p>
+{% endblock %}<pre>{% extends 'base.html' %}
+{% block title %}
+{{ super() }}
+    500
+{% endblock %}
+
+{% block content %}
+    </pre></body></html>

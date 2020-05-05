@@ -1,0 +1,24 @@
+
+<!-- saved from url=(0139)https://static.platzi.com/media/tmp/class-files/git/platzi-flask/platzi-flask-498e88b24cb15e38abe6cbee98ec8da1c4719216/templates/hello.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"></head><body><h1>Hello World Platzi, tu IP es {{ user_ip }}</h1>
+    {% else %}
+        <a href="https://static.platzi.com/media/tmp/class-files/git/platzi-flask/platzi-flask-498e88b24cb15e38abe6cbee98ec8da1c4719216/templates/%7B%7B%20url_for(&#39;index&#39;)%20%7D%7D">Ir a inicio</a>
+    {% endif %}
+
+    <ul>
+        {% for todo in todos %}
+            {{ macros.render_todo(todo) }}
+        {% endfor %}
+    </ul>
+{% endblock %}
+<pre>{% extends 'base.html' %}
+{% import 'macros.html' as macros %}
+
+{% block title %}
+    {{ super() }}
+    Bienvenido
+{% endblock %}
+
+{% block content %}
+    {% if user_ip %}
+        </pre></body></html>
