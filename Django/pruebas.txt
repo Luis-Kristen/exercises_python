@@ -44,3 +44,16 @@ for user in users:
 for user in users:
     obj = User.objects.create(**user)
     print(obj.pk, ':', obj.email)
+
+
+
+
+    debemos crear= 
+
+    website
+    biography
+    phone_number
+    profile picture
+
+    created
+    modified
