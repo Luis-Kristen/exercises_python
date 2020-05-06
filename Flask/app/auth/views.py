@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from flask import render_template, session, redirect, flash, url_for
 from flask_login import login_user, login_required, logout_user
 from werkzeug.security import generate_password_hash
@@ -35,7 +36,7 @@ def login():
 
                 redirect(url_for('hello'))
             else:
-                flash('La informaición no coincide')
+                flash('La informaicion no coincide')
         else:
             flash('El usario no existe')
 
@@ -66,12 +67,12 @@ def signup():
 
             login_user(user)
 
-            flash('Bienvenido!')
+            flash('Welcome')
 
             return redirect(url_for('hello'))
 
         else:
-            flash('El usario existe!')
+            flash('El usario ya existe')
 
     return render_template('signup.html', **context)
 

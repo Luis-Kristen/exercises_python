@@ -1,22 +1,23 @@
+# -*- coding: utf-8 -*-
 from flask_wtf import FlaskForm
 from wtforms.fields import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired
 
 
 class LoginForm(FlaskForm):
-    username = StringField('Nombre de usuario', validators=[DataRequired()])
+    username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
-    submit = SubmitField('Enviar')
+    submit = SubmitField('Send')
 
 
 class TodoForm(FlaskForm):
-    description = StringField('DescripciÓn', validators=[DataRequired()])
-    submit = SubmitField('Crear')
+    description = StringField('description', validators=[DataRequired()])
+    submit = SubmitField('Create')
 
 
 class DeleteTodoForm(FlaskForm):
-    submit = SubmitField('Borrar')
+    submit = SubmitField('Delete')
 
 
 class UpdateTodoForm(FlaskForm):
-    submit = SubmitField('Actualizar')
+    submit = SubmitField('Update')

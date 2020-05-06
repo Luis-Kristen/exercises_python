@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import unittest
 from flask import request, make_response, redirect, render_template, session, url_for, flash
 from flask_login import login_required, current_user
@@ -57,7 +58,7 @@ def hello():
     if todo_form.validate_on_submit():
         put_todo(user_id=username, description=todo_form.description.data)
 
-        flash('Tu tarea se creo con éxito!')
+        flash('Tu tarea se ha creado exitosamente')
 
         return redirect(url_for('hello'))
 
