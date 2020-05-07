@@ -2,6 +2,7 @@
 
 # Django
 #from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 # Utilities
@@ -39,8 +40,14 @@ posts = [
 ]
 
 
+@login_required
 def list_posts(request):
     """List existing posts."""
+    return render(request, 'posts/feed.html', {'posts': posts})
+
+
+# def list_posts(request):
+#     """List existing posts."""
     # content = []
     # for post in posts:
     #     content.append("""
@@ -49,4 +56,4 @@ def list_posts(request):
     #         <figure><img src="{picture}"/></figure>
     #     """.format(**post))
     # return HttpResponse('<br>'.join(content))
-    return render(request, 'posts/feed.html', {'posts': posts})
+    # return render(request, 'posts/feed.html', {'posts': posts})
