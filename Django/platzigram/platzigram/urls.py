@@ -14,14 +14,10 @@ from users import views as users_views
 urlpatterns = [
 
     path('admin/', admin.site.urls),
-
-    path('hello-world/', local_views.hello_world, name='hello_world'),
-    path('sorted/', local_views.sort_integers, name='sort'),
-    path('hi/<str:name>/<int:age>/', local_views.say_hi, name='hi'),
-
+    #relacionada a post
     path('', posts_views.list_posts, name='feed'),
     path('posts/new/', posts_views.create_post, name='create_post'),
-
+    #relacionado a usuarios
     path('users/login/', users_views.login_view, name='login'),
     path('users/logout/', users_views.logout_view, name='logout'),
     path('users/signup/', users_views.signup, name='signup'),
