@@ -95,7 +95,7 @@ def signup(request):
         request=request,
         template_name='users/signup.html',
         context={'form': form}
-    )
+    ) 
 
 
 @login_required
