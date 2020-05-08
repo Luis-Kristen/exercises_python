@@ -43,7 +43,6 @@ class CreatePostView(LoginRequiredMixin, CreateView):
         context['user'] = self.request.user
         context['profile'] = self.request.user.profile
         return context
-
     
 # def list_posts(request):
 #     """List existing posts."""
