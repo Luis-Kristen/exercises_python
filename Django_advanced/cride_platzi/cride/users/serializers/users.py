@@ -101,7 +101,7 @@ class UserSignUpSerializer(serializers.Serializer):
 
     def gen_verification_token(self, user):
         """Create JWT token that the user can use to verify its account """
-        exp_date = timezone.now() + timedelta(seconds=1)
+        exp_date = timezone.now() + timedelta(minutes=30)
         payload = {
             'user': user.username,
             'exp': int(exp_date.timestamp()),
@@ -135,3 +135,29 @@ class UserLoginSerializer(serializers.Serializer):
         token, created = Token.objects.get_or_create(user=self.context['user'])
         return self.context['user'], token.key
 
+
+class AccountVerificationSerializer(serializers.Serializer):
+    """Account verification serializer"""
+
+    token = serializers.CharField()
+
+    def validate_token(self, data):
+        """Verify token is valid"""
+        try:
+            payload = jwt.decode(data, settings.SECRET_KEY, algorithms=['HS256'])
+        except jwt.ExpiredSignatureError:
+            raise serializers.ValidationError('Verification link has expired.')
+        except jwt.PyJWTError:
+            raise serializers.ValidationError('Invalid token')
+        if payload['type'] != 'email_confirmation':
+            raise serializers.ValidationError('Invalid Token')
+
+        self.context['payload'] = payload
+        return data
+
+    def save(self):
+        """Update user´s verified status"""
+        payload = self.context['payload']
+        user = User.objects.get(username=payload['user'])
+        user.is_verified = True
+        user.save()
