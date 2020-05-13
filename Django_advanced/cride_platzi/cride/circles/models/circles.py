@@ -22,8 +22,14 @@ class Circle(CRideModel):
     about = models.CharField('circle description', max_length=255)
     picture = models.ImageField(upload_to='circles/pictures', blank=True, null=True)
 
+    members = models.ManyToManyField(
+        'users.User', 
+        through='circles.Membership',
+        through_fields=('circle', 'user')
+    )
+    
     # Stats
-    rides_offer = models.PositiveIntegerField(default=0)
+    rides_offered = models.PositiveIntegerField(default=0)
     rides_taken = models.PositiveIntegerField(default=0)
 
     verified = models.BooleanField(
@@ -55,5 +61,5 @@ class Circle(CRideModel):
     class Meta(CRideModel.Meta):
         """Meta class.  """
 
-        ordering = ['-rides_taken', '-rides_offer']
+        ordering = ['-rides_taken', '-rides_offered']
 
