@@ -101,7 +101,7 @@ class UserSignUpSerializer(serializers.Serializer):
 
     def gen_verification_token(self, user):
         """Create JWT token that the user can use to verify its account """
-        exp_date = timezone.now() + timedelta(minutes=30)
+        exp_date = timezone.now() + timedelta(days=10)
         payload = {
             'user': user.username,
             'exp': int(exp_date.timestamp()),
