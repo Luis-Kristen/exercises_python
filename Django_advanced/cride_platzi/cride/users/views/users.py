@@ -13,6 +13,7 @@ from rest_framework.permissions import (
 from cride.users.permissions import IsAccountOwner
 
 # Serializers
+from cride.users.serializers.profiles import ProfileModelSerializer
 from cride.circles.serializers import CircleModelSerializer
 from cride.users.serializers import (
     AccountVerificationSerializer,
@@ -26,6 +27,7 @@ from cride.users.models import User
 from cride.circles.models import Circle
 
 class UserViewSet(mixins.RetrieveModelMixin, 
+                    mixins.UpdateModelMixin,
                     viewsets.GenericViewSet):
     """User view set. 
 
@@ -39,7 +41,7 @@ class UserViewSet(mixins.RetrieveModelMixin,
         """Assign permissions based on action."""
         if self.action in ['signup', 'login', 'verify']:
             permissions = [AllowAny]
-        elif self.action in ['retrieve', 'update', 'partial_update', 'profile']:
+        elif self.action in ['retrieve' 'update', 'partial_update', 'profile']:
             permissions = [IsAuthenticated, IsAccountOwner]
         else:
             permissions = [IsAuthenticated]
@@ -76,6 +78,22 @@ class UserViewSet(mixins.RetrieveModelMixin,
         data = {'message': 'congratulations, now go share some rides!'}
         return Response(data, status=status.HTTP_200_OK)
     
+    @action(detail=True, methods=['put', 'patch'])
+    def profile(self, request, *args, **kwargs):
+        """Update profile data"""
+        user = self.get_object()
+        profile = user.profile
+        partial = request.method == 'PATCH'
+        serializer = ProfileModelSerializer(
+            profile,
+            data = request.data,
+            partial = partial            
+        )
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        data = UserModelSerializer(user).data
+        return Response(data)
+
     def retrieve(self, request, *args, **kwargs):
         """Add extra data to the response."""
         responde = super(UserViewSet, self).retrieve(request, *args, **kwargs)
@@ -88,5 +106,5 @@ class UserViewSet(mixins.RetrieveModelMixin,
             'circles': CircleModelSerializer(circles, many=True).data            
         }
         response.data = data
-        return response
+        return Response
 

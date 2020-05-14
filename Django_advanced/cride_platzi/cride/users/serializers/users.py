@@ -14,6 +14,9 @@ from rest_framework import serializers
 from rest_framework.authtoken.models import Token
 from rest_framework.validators import UniqueValidator
 
+# Serializers
+from cride.users.serializers.profiles import ProfileModelSerializer
+
 # Models
 from cride.users.models import User, Profile
 
@@ -25,6 +28,7 @@ from datetime import timedelta
 class UserModelSerializer(serializers.ModelSerializer):
     """User model serializer."""
 
+    profile = ProfileModelSerializer(read_only=True)
     class Meta:
         """Meta class"""
 
@@ -35,7 +39,7 @@ class UserModelSerializer(serializers.ModelSerializer):
             'last_name',
             'email',
             'phone_number',
-
+            'profile'
         )
 
 
