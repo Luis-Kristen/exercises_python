@@ -66,7 +66,6 @@ class CreateRideSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         """Validate.
-
         Verify that the person who offers the ride is member
         and also the same user making the request.
         """
