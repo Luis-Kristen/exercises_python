@@ -160,7 +160,7 @@ CELERYD_TASK_TIME_LIMIT = 5 * 60
 CELERYD_TASK_SOFT_TIME_LIMIT = 60
 
 # Django REST Framework
-REST_FRAMWORK = {
+REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASES': (        
         'rest_framework.renderers.JSONRenderer',
     ),
