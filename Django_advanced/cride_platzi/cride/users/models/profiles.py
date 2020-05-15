@@ -1,16 +1,16 @@
-"""Profile model. """
+"""Profile model."""
 
-# Django 
+# Django
 from django.db import models
 
 # Utilities
 from cride.utils.models import CRideModel
 
+
 class Profile(CRideModel):
-    """profile model.
-    
-    A profile holds a user`s public data like biography, picture,
-    and statics.
+    """Profile model.
+    A profile holds a user's public data like biography, picture,
+    and statistics.
     """
 
     user = models.OneToOneField('users.User', on_delete=models.CASCADE)
@@ -28,9 +28,9 @@ class Profile(CRideModel):
     rides_offered = models.PositiveIntegerField(default=0)
     reputation = models.FloatField(
         default=5.0,
-        help_text='User`s Reputation based on the rides taken and offered'
+        help_text="User's reputation based on the rides taken and offered."
     )
 
     def __str__(self):
-        """return user`s str representation"""
+        """Return user's str representation."""
         return str(self.user)

@@ -8,9 +8,10 @@ from cride.circles.models import Membership
 
 
 class IsCircleAdmin(BasePermission):
-    """"Allow acces. Only to circle admins"""
+    """Allow access only to circle admins."""
+
     def has_object_permission(self, request, view, obj):
-        """verify user have a membership in the obj/the circle"""
+        """Verify user have a membership in the obj."""
         try:
             Membership.objects.get(
                 user=request.user,

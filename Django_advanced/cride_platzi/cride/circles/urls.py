@@ -1,5 +1,3 @@
-""" Circles URLs. """
-
 """Circles URLs."""
 
 # Django
