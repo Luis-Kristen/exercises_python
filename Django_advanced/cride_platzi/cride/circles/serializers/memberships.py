@@ -41,7 +41,7 @@ class MembershipModelSerializer(serializers.ModelSerializer):
 
 
 class AddMemberSerializer(serializers.Serializer):
-    """Add member serializer.
+    """Add member serializer. 
     Handle the addition of a new member to a circle.
     Circle object must be provided in the context.
     """
