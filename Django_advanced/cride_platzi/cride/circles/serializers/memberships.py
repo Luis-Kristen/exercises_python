@@ -59,7 +59,7 @@ class AddMemberSerializer(serializers.Serializer):
         return data
 
     def validate_invitation_code(self, data):
-        """Verify code exists and that it is related to the circle."""
+        """ Verify code exists and that it is related to the circle."""
         try:
             invitation = Invitation.objects.get(
                 code=data,
@@ -72,14 +72,14 @@ class AddMemberSerializer(serializers.Serializer):
         return data
 
     def validate(self, data):
-        """Verify circle is capable of accepting a new member."""
+        """ Verify circle is capable of accepting a new member."""
         circle = self.context['circle']
         if circle.is_limited and circle.members.count() >= circle.members_limit:
             raise serializers.ValidationError('Circle has reached its member limit :(')
         return data
 
     def create(self, data):
-        """Create new circle member."""
+        """ Create new circle member."""
         circle = self.context['circle']
         invitation = self.context['invitation']
         user = data['user']
